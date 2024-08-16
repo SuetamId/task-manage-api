@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "user")
 @Getter @Setter
@@ -16,17 +15,17 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name",length = 30, nullable = false)
     private String name;
 
-    @Column(name = "username")
+    @Column(name = "username", length = 50, nullable = false)
     private String username;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "resetPassword")
-    private String resetPassword;
+    private LocalDateTime resetPassword;
 
     @Column(name = "password")
     private String password;
