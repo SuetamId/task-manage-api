@@ -1,5 +1,6 @@
 package com.br.taskmanage.taskmanage_api.model;
 
+import com.br.taskmanage.taskmanage_api.model.enums.TaskStatus;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,9 @@ public class Task {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "status")
+    private TaskStatus status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
