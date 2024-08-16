@@ -12,7 +12,7 @@ Objetivo deste projeto foi aplicar os conhecimentos adiquiridos no curso Deal - 
 - **Spring Boot 3**: Framework para construir a API.
 - **Spring Security**: Implementação da autenticação e autorização.
 - **JPA/Hibernate**: ORM para gerenciar o banco de dados.
-- **H2 Database**: Banco de dados em memória para testes e desenvolvimento.
+- **PostgreSQL**: Banco de dados para testes e desenvolvimento.
 - **Maven**: Gerenciamento de dependências e build.
 - **Git**: Controle de versão.
 - **IntelliJ IDEA**: IDE utilizada para o desenvolvimento.
