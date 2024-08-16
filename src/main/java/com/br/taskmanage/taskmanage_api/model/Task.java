@@ -14,6 +14,6 @@ public class Task {
     private String description;
 
     @ManyToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }
