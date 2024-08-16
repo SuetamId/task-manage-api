@@ -1,4 +1,4 @@
-package model;
+package com.br.taskmanage.taskmanage_api.model;
 
 import jakarta.persistence.*;
 
@@ -16,5 +16,4 @@ public class Task {
     @ManyToOne
     @Column(name = "user_id")
     private User user;
-
 }
