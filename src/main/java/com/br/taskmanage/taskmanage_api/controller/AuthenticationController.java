@@ -1,7 +1,9 @@
 package com.br.taskmanage.taskmanage_api.controller;
 
 import com.br.taskmanage.taskmanage_api.DTO.AuthenticationDTO;
+import com.br.taskmanage.taskmanage_api.DTO.LoginResponseDTO;
 import com.br.taskmanage.taskmanage_api.DTO.RegisterDTO;
+import com.br.taskmanage.taskmanage_api.infra.security.TokenService;
 import com.br.taskmanage.taskmanage_api.model.User;
 import com.br.taskmanage.taskmanage_api.repository.UserRepository;
 import com.br.taskmanage.taskmanage_api.service.UserService;
@@ -24,20 +26,22 @@ public class AuthenticationController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationDTO> login(@RequestBody @Valid AuthenticationDTO data){
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody @Valid RegisterDTO data) throws Exception{
-
         this.userService.save(data);
-
         return ResponseEntity.ok().build();
     }
 }

@@ -40,6 +40,7 @@ public class UserService {
         newUser.setCreateAt(now);
         newUser.setRole(registerDTO.role());
 
-        return userRepository.save(newUser);
+        userRepository.save(newUser);
+        return newUser;
     }
 }
