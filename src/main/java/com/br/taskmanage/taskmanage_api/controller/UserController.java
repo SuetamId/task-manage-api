@@ -20,9 +20,4 @@ public class UserController {
   public ResponseEntity<List<User>> findAll(){
       return ResponseEntity.ok(userService.findAll());
   }
-
-  @PostMapping
-  public ResponseEntity<User> save(@RequestBody User user) {
-      return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
-  }
 }

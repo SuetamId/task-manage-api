@@ -27,23 +27,18 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name",length = 30, nullable = false)
-    private String name;
-
     @Column(name = "username", length = 50, nullable = false)
     private String username;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "resetPassword")
-    private LocalDateTime resetPassword;
-
     @Column(name = "password")
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private UserRoleEnum role;
 
     @Column(name = "createAt")
     private LocalDateTime createAt;
@@ -51,6 +46,14 @@ public class User implements UserDetails {
     @Column(name = "updateAt")
     private LocalDateTime updateAt;
 
+    public User(String username, String email, String password, UserRoleEnum role, LocalDateTime createAt, LocalDateTime updateAt) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
