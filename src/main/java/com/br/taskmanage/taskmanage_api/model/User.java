@@ -46,18 +46,9 @@ public class User implements UserDetails {
     @Column(name = "updateAt")
     private LocalDateTime updateAt;
 
-    public User(String username, String email, String password, UserRoleEnum role, LocalDateTime createAt, LocalDateTime updateAt) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       if(Objects.equals(this.role, UserRoleEnum.ADMIN.getRole())) return List.of(new SimpleGrantedAuthority("ADMIN"), new SimpleGrantedAuthority("USER"));
+       if(Objects.equals(this.role, UserRoleEnum.ADMIN)) return List.of(new SimpleGrantedAuthority("ADMIN"), new SimpleGrantedAuthority("USER"));
        else return List.of(new SimpleGrantedAuthority("USER"));
     }
 

@@ -5,7 +5,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.br.taskmanage.taskmanage_api.model.User;
+import com.br.taskmanage.taskmanage_api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -18,25 +21,24 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generateToken(User user) {
+    public String generateToken(User user){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("taskmanage-api")
+                    .withIssuer("auth-api")
                     .withSubject(user.getUsername())
-                    .withExpiresAt(getExpiration())
+                    .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
-
         } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error while generation token", exception);
+            throw new RuntimeException("Error while generating token", exception);
         }
     }
 
-    public String validateToken(String token) {
+    public String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("taskmanage-api")
+                    .withIssuer("auth-api")
                     .build()
                     .verify(token)
                     .getSubject();
@@ -45,7 +47,8 @@ public class TokenService {
         }
     }
 
-    private Instant getExpiration() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-3"));
+    private Instant genExpirationDate(){
+        return LocalDateTime.now(ZoneOffset.UTC).plusHours(2).toInstant(ZoneOffset.UTC);
     }
 }
+

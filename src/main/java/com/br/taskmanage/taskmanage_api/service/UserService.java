@@ -2,9 +2,9 @@ package com.br.taskmanage.taskmanage_api.service;
 
 import com.br.taskmanage.taskmanage_api.DTO.RegisterDTO;
 import com.br.taskmanage.taskmanage_api.model.User;
+import com.br.taskmanage.taskmanage_api.model.enums.UserRoleEnum;
 import com.br.taskmanage.taskmanage_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,19 +28,20 @@ public class UserService {
 
     public User save(RegisterDTO registerDTO) throws Exception {
         if(this.findByUsername(registerDTO.username()) != null){
-            throw new Exception("Usuario já cadastrado");
+            throw new Exception("User already registered");
         }
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(registerDTO.password());
-        LocalDateTime now = LocalDateTime.now();
-
         User newUser = new User();
+
         newUser.setUsername(registerDTO.username());
-        newUser.setPassword(encryptedPassword);
-        newUser.setCreateAt(now);
+        if(registerDTO.email() != null){
+            newUser.setEmail(registerDTO.email());
+        }
+        newUser.setRole(UserRoleEnum.USER);
+        newUser.setPassword(new BCryptPasswordEncoder().encode(registerDTO.password()));
+        newUser.setCreateAt(LocalDateTime.now());
         newUser.setRole(registerDTO.role());
 
-        userRepository.save(newUser);
-        return newUser;
+        return userRepository.save(newUser);
     }
 }

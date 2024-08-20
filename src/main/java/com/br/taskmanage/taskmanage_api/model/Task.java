@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.engine.internal.Cascade;
+import org.hibernate.mapping.Join;
 
 @Entity
 @Getter @Setter
@@ -23,7 +24,7 @@ public class Task {
     @Column(name = "status")
     private TaskStatusEnum status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 }
