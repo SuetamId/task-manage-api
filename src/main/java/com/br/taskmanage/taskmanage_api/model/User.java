@@ -40,6 +40,9 @@ public class User implements UserDetails {
     @Column(name = "role")
     private UserRoleEnum role;
 
+    @Column(name = "bo_excluded")
+    private Boolean excluded;
+
     @Column(name = "createAt")
     private LocalDateTime createAt;
 
