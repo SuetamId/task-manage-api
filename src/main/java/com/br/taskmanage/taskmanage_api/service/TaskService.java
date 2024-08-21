@@ -67,10 +67,6 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new Exception("Task with id " + id + " not found"));
 
-        task.setTitle(task.getTitle());
-        task.setDescription(task.getDescription());
-        task.setStatus(task.getStatus());
-        task.setUser(task.getUser());
         task.setUpdateAt(LocalDateTime.now());
         task.setExcluded(true);
 
