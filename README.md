@@ -16,7 +16,7 @@ Objetivo deste projeto foi aplicar os conhecimentos adiquiridos no curso Deal - 
 - **Maven**: Gerenciamento de dependências e build.
 - **Git**: Controle de versão.
 - **IntelliJ IDEA**: IDE utilizada para o desenvolvimento.
-- **Postman**: Ferramenta para testar as requisições da API.
+- **Insomnia**: Ferramenta para testar as requisições da API.
 - **Docker**
 - **Swagger**: Documentação da API.
 
