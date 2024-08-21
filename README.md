@@ -29,4 +29,4 @@ Objetivo deste projeto foi aplicar os conhecimentos adiquiridos no curso Deal - 
 
 Frontend Angular 17
 
-[Frontend Docs](#)
+[Frontend Docs](https://github.com/SuetamId/task-manage-frontend)
