@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.hibernate.engine.internal.Cascade;
 import org.hibernate.mapping.Join;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter @Setter
 public class Task {
@@ -24,7 +26,16 @@ public class Task {
     @Column(name = "status")
     private TaskStatusEnum status;
 
+    @Column(name = "bo_excluded")
+    private Boolean excluded;
+
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "createAt")
+    private LocalDateTime createAt;
+
+    @Column(name = "updateAt")
+    private LocalDateTime updateAt;
 }
