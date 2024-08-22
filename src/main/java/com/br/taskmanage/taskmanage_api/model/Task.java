@@ -4,8 +4,6 @@ import com.br.taskmanage.taskmanage_api.model.enums.TaskStatusEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.engine.internal.Cascade;
-import org.hibernate.mapping.Join;
 
 import java.time.LocalDateTime;
 

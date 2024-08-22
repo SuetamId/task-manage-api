@@ -62,10 +62,15 @@ public class TaskService {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new Exception("Task with id " + id + " not found"));
 
+        var user = authorizationService.getCurrentUser();
+        if (user == null) {
+            throw new RuntimeException("User not authenticated");
+        }
+
         task.setTitle(taskDTO.title());
         task.setDescription(taskDTO.description());
         task.setStatus(taskDTO.status());
-        task.setUser(taskDTO.user());
+        task.setUser((User) user);
         task.setExcluded(false);
         task.setUpdateAt(LocalDateTime.now());
 

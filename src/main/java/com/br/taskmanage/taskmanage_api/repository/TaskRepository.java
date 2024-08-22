@@ -10,6 +10,6 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByExcludedFalse();
-    List<Task> findByExcludedFalseAndUserId(Long userId);
+    List<Task> findByExcludedFalseAndUserId(Long id);
 
 }

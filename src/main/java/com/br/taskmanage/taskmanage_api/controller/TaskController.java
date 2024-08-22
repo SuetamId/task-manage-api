@@ -1,9 +1,7 @@
 package com.br.taskmanage.taskmanage_api.controller;
 
-import com.br.taskmanage.taskmanage_api.DTO.RegisterDTO;
 import com.br.taskmanage.taskmanage_api.DTO.TaskDTO;
 import com.br.taskmanage.taskmanage_api.model.Task;
-import com.br.taskmanage.taskmanage_api.model.User;
 import com.br.taskmanage.taskmanage_api.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +20,7 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<List<Task>> findAll(){
-        List<Task> tasks = taskService.findAll();
-        return ResponseEntity.ok(tasks);
+        return ResponseEntity.ok(taskService.findAll());
     }
 
     @PostMapping

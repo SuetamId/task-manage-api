@@ -1,9 +1,10 @@
 package com.br.taskmanage.taskmanage_api.service;
 
+import com.br.taskmanage.taskmanage_api.model.User;
 import com.br.taskmanage.taskmanage_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +22,8 @@ public class AuthorizationService implements UserDetailsService {
     }
 
     public UserDetails getCurrentUser() {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             String username = ((UserDetails) authentication.getPrincipal()).getUsername();
             return userRepository.findByUsername(username);
