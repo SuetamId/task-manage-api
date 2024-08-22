@@ -39,7 +39,7 @@ public class TaskService {
             throw new RuntimeException("User not authenticated");
         }
 
-        task.setStatus(TaskStatusEnum.TODO);
+        task.setStatus(task.getStatus());
         task.setTitle(task.getTitle());
         task.setDescription(task.getDescription());
         task.setCreateAt(LocalDateTime.now());

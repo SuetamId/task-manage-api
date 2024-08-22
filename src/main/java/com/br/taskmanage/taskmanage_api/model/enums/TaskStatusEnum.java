@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum TaskStatusEnum {
     TODO("TODO"),
     IN_PROGRESS("IN_PROGRESS"),
-    DONE("DONE");
+    DONE("DONE"),
+    CANCELLED("CANCELLED");
 
     private final String taskStatus;
 
