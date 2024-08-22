@@ -22,7 +22,8 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<List<Task>> findAll(){
-        return ResponseEntity.ok(taskService.findAll());
+        List<Task> tasks = taskService.findAll();
+        return ResponseEntity.ok(tasks);
     }
 
     @PostMapping
