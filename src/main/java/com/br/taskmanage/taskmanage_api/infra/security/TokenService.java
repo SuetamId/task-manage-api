@@ -40,7 +40,7 @@ public class TokenService {
                     .withIssuer("auth-api")
                     .build()
                     .verify(token)
-                    .getClaim("email").asString();
+                    .getSubject();
 
         } catch (JWTVerificationException exception) {
             return "";
