@@ -26,7 +26,7 @@ public class UserController {
   @Secured({"ADMIN"})
   @PostMapping
   public ResponseEntity<User> save(@RequestBody RegisterDTO user) throws Exception {
-    return ResponseEntity.ok(userService.save(user));
+    return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
   }
 
   @Secured({"ADMIN"})
