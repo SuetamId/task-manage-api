@@ -1,7 +1,7 @@
 
 # Gerenciador de Tarefas com Autenticação
 
-Objetivo deste projeto foi aplicar os conhecimentos adiquiridos no curso Deal - Spring Boot e Angular (17+) da DIO, criando um gerenciador de tarefas, com Autenticação.
+Objetivo deste projeto foi aplicar os conhecimentos em Spring Boot e Angular (17+), criando um gerenciador de tarefas, com Autenticação.
 
 
 ## Stack Utilizada
